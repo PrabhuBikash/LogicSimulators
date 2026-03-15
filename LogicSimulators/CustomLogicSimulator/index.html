@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Universal Gate Setup</title>
+  <link rel="stylesheet" href="simulator/style.css" />
+  <link rel="stylesheet" href="Settings.css" />
+  <script defer src="SettingsFunctions.js"></script>
+  <script defer src="simulator/functions.js"></script>
+  <script defer src="SettingsScript.js"></script>
+</head>
+<body>
+  <div id="mainContainer">
+    <!-- LEFT SIDE: Form -->
+    <div id="settingsPage">
+      <form id="settingsForm">
+        <h1>🧠 Universal Logic Simulator Setup</h1>
+
+        <!-- Base input -->
+        <label for="baseInput">🔢 Base (≥2):</label>
+        <input type="number" id="baseInput" min="2" value="2" required />
+
+        <!-- Symbols input -->
+        <label for="symbolInput">🔣 Symbols (comma-separated):</label>
+        <textarea id="symbolInput" rows="2"  placeholder="A,B,C or leave blank for 0,1,2" >0,1</textarea>
+        
+        <!-- Colors section -->
+        <h2>🎨 Signal Colors</h2>
+        <div id="colorPreview"></div>
+        <button id="shuffleColors" type="button">🎨 assign Random Colors</button>
+
+
+        <!-- Gate Logic -->
+        <h2>⚙️ Gate Logic Code</h2>
+<pre style="background:#212121;padding:1em;border-radius:6px;font-family:monospace;font-size:14px;line-height:0.8;overflow:auto;margin:0;"><ol style="margin:0;padding:0 0 0 2em;list-style:decimal;color:#545454">
+<li style="margin:0;padding:0;"><span style="color:#C792EA;">const</span> <span style="color:#82AAFF;">UniversalGate</span> <span style="color:#89DDFF;">=</span> <span style="color:#fff;">(</span><span style="color:#fff;">[<span style="color:#82AAFF;">a</span>, <span style="color:#82AAFF;">b</span>]</span><span style="color:#fff;">)</span> <span style="color:#89DDFF;">=></span> <span style="color:#fff;">{</span></li>
+<li style="margin:0;padding:0;">  <span>// Hopefully Universal</span></li>
+<li style="margin:0;padding:0;">  <span style="color:#C792EA;">const</span> <span style="color:#82AAFF;">n</span> <span style="color:#89DDFF;">=</span> <span style="color:#f07178">symbols</span><span style="color:#fff;">.</span><span style="color:#fff;">length;</span></li>
+<li style="margin:0;padding:0;">  <span style="color:#C792EA;">if</span> <span style="color:#fff;">(</span><span style="color:#fff;">a</span> <span style="color:#89DDFF;">===</span> <span style="color:#fff;">b</span><span style="color:#fff;">)</span> <span style="color:#C792EA;">return</span> <span style="color:#fff;">[</span><span style="color:#fff;">(</span><span style="color:#fff;">a</span> <span style="color:#89DDFF;">+</span> <span style="color:#ff5370">1</span><span style="color:#fff;">)</span> <span style="color:#89DDFF;">%</span> <span style="color:#fff;">n</span><span style="color:#fff;">];</span></li>
+<li style="margin:0;padding:0;">  <span style="color:#C792EA;">if</span> <span style="color:#fff;">(</span><span style="color:#fff;">a</span> <span style="color:#89DDFF;">&gt;</span> <span style="color:#fff;">b</span> <span style="color:#89DDFF;">&&</span> <span style="color:#fff;">a</span> <span style="color:#89DDFF;">&lt;</span> <span style="color:#fff;">n</span> <span style="color:#89DDFF;">-</span> <span style="color:#ff5370">1</span><span style="color:#fff;">)</span> <span style="color:#C792EA;">return</span> <span style="color:#fff;">[</span><span style="color:#ff5370">1</span><span style="color:#fff;">];</span></li>
+<li style="margin:0;padding:0;">  <span style="color:#C792EA;">return</span> <span style="color:#fff;">[</span><span style="color:#ff5370">0</span><span style="color:#fff;">];</span></li>
+<li style="margin:0;padding:0;"><span style="color:#fff;">};</span></li>
+</ol></pre>
+
+        <button id="nextBtn" type="button">Next</button>
+      </form>
+    </div>
+
+    <!-- RIGHT SIDE: Preview and code editors -->
+    <div id="previewPanel">
+      <div>
+      <label for="delay-input" style="font-weight: bold;">Signal Delay (ms):</label>
+      <input id="delay-input" type="number" value="0" min="0" step="10"/>
+    </div>
+      <div class="canvas" id="canvas"></div>
+      <svg id="wire-layer" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;overflow: visible;position: absolute;"></svg>
+    </div>
+  </div>
+  
+  <div class="modal hidden" id="confirmModal">
+    <div class="modal-content">
+      <p>⚠️ Once you proceed, configurations can't be changed. Are you sure?</p>
+      <div class="modal-buttons">
+        <button id="confirmBtn">Confirm</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>  
+</body>
+</html>
